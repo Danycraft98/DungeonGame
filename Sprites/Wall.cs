@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameProject.Models;
-using GameProject.Managers;
+using DungeonGame.Models;
+using DungeonGame.Managers;
 
-namespace GameProject.Sprites;
+namespace DungeonGame.Sprites;
 
 public class Wall : Sprite
 {

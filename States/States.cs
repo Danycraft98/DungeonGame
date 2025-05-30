@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameProject.States;
+namespace DungeonGame.States;
 
 public abstract class State
 {

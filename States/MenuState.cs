@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using GameProject.Sprites;
+using DungeonGame.Sprites;
 
-namespace GameProject.States;
+namespace DungeonGame.States;
 
 public class MenuState : State
 {

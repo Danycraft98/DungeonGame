@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace GameProject.Sprites;
+namespace DungeonGame.Sprites;
 
 public class GUIBlock : Component
 {

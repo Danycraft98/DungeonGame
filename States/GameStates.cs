@@ -3,12 +3,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using GameProject.Models;
-using GameProject.Sprites;
-using GameProject.Managers;
+using DungeonGame.Models;
+using DungeonGame.Sprites;
+using DungeonGame.Managers;
 
 
-namespace GameProject.States;
+namespace DungeonGame.States;
 
 public class GameState : State
 {

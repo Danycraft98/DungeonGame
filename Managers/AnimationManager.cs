@@ -1,11 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using GameProject.Models;
+using DungeonGame.Models;
 
-namespace GameProject.Managers;
+namespace DungeonGame.Managers;
 
-public class AnimationManager
-{
+public class AnimationManager {
     private Animation _animation;
 
     private float _timer;

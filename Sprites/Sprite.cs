@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using GameProject.Managers;
+using DungeonGame.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameProject.Sprites;
+namespace DungeonGame.Sprites;
 
 public abstract class Sprite
 {

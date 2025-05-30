@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using GameProject.States;
+using DungeonGame.States;
 
-namespace GameProject;
+namespace DungeonGame;
 
 public class Game1 : Game
 {

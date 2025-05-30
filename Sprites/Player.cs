@@ -4,10 +4,10 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using GameProject.Managers;
-using GameProject.Models;
+using DungeonGame.Managers;
+using DungeonGame.Models;
 
-namespace GameProject.Sprites;
+namespace DungeonGame.Sprites;
 
 public class Player : Sprite
 {

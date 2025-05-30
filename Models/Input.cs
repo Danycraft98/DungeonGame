@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace GameProject.Models;
+namespace DungeonGame.Models;
 
 public class Input
 {

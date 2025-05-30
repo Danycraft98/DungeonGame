@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GameProject.Models;
+namespace DungeonGame.Models;
 
 public class Animation
 {

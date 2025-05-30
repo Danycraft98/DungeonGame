@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Numerics;
-using GameProject.Sprites;
+using DungeonGame.Sprites;
 using System;
 
-namespace GameProject.Managers;
+namespace DungeonGame.Managers;
 
 public class MapManager
 {
