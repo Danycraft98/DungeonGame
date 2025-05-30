@@ -10,8 +10,7 @@ using DungeonGame.Managers;
 
 namespace DungeonGame.States;
 
-public class GameState : State
-{
+public class GameState : State {
 
     public List<Sprite> _sprites;
 
@@ -43,17 +42,11 @@ public class GameState : State
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch) {
         spriteBatch.Begin();
-        mapManager.LoadMap();
         
-        foreach (var item in mapManager.Floors)
-        {
+        foreach (var item in mapManager.LoadMap()) {
             spriteBatch.Draw(item.Value,
                              new Rectangle((int)item.Key.X, (int)item.Key.Y, item.Value.Width * (int)mapManager.scale, item.Value.Height * (int)mapManager.scale),
                              new Rectangle(0, 0, item.Value.Width, item.Value.Height), Color.White);
-        }
-
-        foreach (var item in mapManager.Walls) {
-            item.Draw(spriteBatch);
         }
 
         player.Draw(spriteBatch);
@@ -66,7 +59,6 @@ public class GameState : State
     }
 
     public override void Update(GameTime gameTime) {
-        
         foreach (var sprite in _sprites)
             sprite.Update(gameTime, _sprites, mapManager);
     }
