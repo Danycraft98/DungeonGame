@@ -1,8 +1,11 @@
 using System.IO;
+using System.Linq;
 using System.Collections.Generic;
+using Vector2 = System.Numerics.Vector2;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System.Numerics;
 using DungeonGame.Sprites;
 
 
@@ -10,50 +13,52 @@ namespace DungeonGame.Managers;
 
 public class MapManager {
 
-    public float scale = 4;
+    public int scale = 4;
 
-    private Dictionary<Vector2, string> mapDict { get; set; }
+    private Dictionary<Vector2, Texture2D> mapDict;
 
     private ContentManager _content;
 
-    private Vector2 dimension;
+    public Vector2 location = new(30, 34);
 
-    public Vector2 location = new(32, 34);
-
-    public MapManager(string path, ContentManager content)
-    {
+    public MapManager(string path, ContentManager content) {
         mapDict = [];
         _content = content;
-        int width = 0;
         StreamReader reader = new(path);
 
         int y = 0;
         string line;
-        while ((line = reader.ReadLine()) != null)
-        {
+        while ((line = reader.ReadLine()) != null) {
             string[] row = line.Split(",");
-            width = row.Length;
-            for (int x = 0; x < row.Length; x++)
-            {
-                if (row[x] != "00")
-                {
-                    mapDict[new Vector2(x, y)] = row[x];
+            for (int x = 0; x < row.Length; x++) {
+                if (row[x] != "00") {
+                    Texture2D texture = _content.Load<Texture2D>("2 Dungeon Tileset/1 Tiles/Tile_" + row[x]);
+                    mapDict[new Vector2(x, y)] = texture;
                 }
             }
             y++;
         }
-        dimension = new(width, y);
     }
 
-    public string GetMapCoord (int x, int y) {
+    public Texture2D GetMapCoord (int x, int y) {
         return mapDict[new Vector2(x, y)];
+    }
+
+    public string GetTileType(int x, int y) {
+        Texture2D tile = GetMapCoord(x, y);
+        return tile.Name.Split("_").Last();
+    }
+
+    public Rectangle GetTileRect(int x, int y) {
+        Texture2D tile = GetMapCoord(x, y);
+        return new Rectangle((int) (x - location.X + 10) * tile.Width * scale, (int) (y - location.Y + 7) * tile.Height * scale, tile.Width*scale, tile.Height*scale);
     }
 
     public Dictionary<Vector2, Texture2D> LoadMap() {
         Dictionary<Vector2, Texture2D> result = new();
         foreach (var kvp in mapDict) {
-            Texture2D texture = _content.Load<Texture2D>("2 Dungeon Tileset/1 Tiles/Tile_" + kvp.Value);
-            result[new Vector2((kvp.Key.X - location.X + 10) * texture.Width * scale, (kvp.Key.Y - location.Y + 7) * texture.Height * scale)] = texture;
+            Vector2 position = new Vector2((kvp.Key.X - location.X + 10) * kvp.Value.Width * scale, (kvp.Key.Y - location.Y + 7) * kvp.Value.Height * scale);
+            result[position] = kvp.Value;
         }
         return result;
     }

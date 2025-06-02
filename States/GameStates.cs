@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Vector2 = System.Numerics.Vector2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,8 +25,8 @@ public class GameState : State {
             { "WalkDown", new Animation(content.Load<Texture2D>("1 Characters/2/D_Walk"), 6) },
             { "WalkLeft", new Animation(content.Load<Texture2D>("1 Characters/2/L_Walk"), 6) },
             { "WalkRight", new Animation(content.Load<Texture2D>("1 Characters/2/R_Walk"), 6) },
-        }) {
-            Position = new Vector2(640, 370),
+        }, 6) {
+            Position = new Vector2(660, 370),
             Input = new Input()
             {
                 Up = Keys.W,
@@ -35,7 +36,7 @@ public class GameState : State {
             },
         };
 
-        _sprites = new List<Sprite> { player };
+        _sprites = [player];
 
         mapManager = new("../../../Data/map.txt", _content);
     }
@@ -45,7 +46,8 @@ public class GameState : State {
         
         foreach (var item in mapManager.LoadMap()) {
             spriteBatch.Draw(item.Value,
-                             new Rectangle((int)item.Key.X, (int)item.Key.Y, item.Value.Width * (int)mapManager.scale, item.Value.Height * (int)mapManager.scale),
+                             //mapManager.GetTileRect((int)item.Key.X, (int)item.Key.Y),
+                             new Rectangle((int)item.Key.X, (int)item.Key.Y, item.Value.Width * mapManager.scale, item.Value.Height * mapManager.scale),
                              new Rectangle(0, 0, item.Value.Width, item.Value.Height), Color.White);
         }
 
@@ -60,6 +62,6 @@ public class GameState : State {
 
     public override void Update(GameTime gameTime) {
         foreach (var sprite in _sprites)
-            sprite.Update(gameTime, _sprites, mapManager);
+            sprite.Update(gameTime, mapManager);
     }
 }

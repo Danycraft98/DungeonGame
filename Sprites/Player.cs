@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+using Vector2 = System.Numerics.Vector2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -13,8 +14,6 @@ public class Player : Sprite
 {
     #region Fields
 
-    private float _scale=3;
-
     protected AnimationManager _animationManager;
 
     protected Dictionary<string, Animation> _animations;
@@ -22,7 +21,7 @@ public class Player : Sprite
     #endregion
 
     #region Properties
-
+    
     public Input Input;
 
     public Vector2 Position {
@@ -70,20 +69,21 @@ public class Player : Sprite
         else _animationManager.Stop();
     }
 
-    public Player(Dictionary<string, Animation> animations) {
+    public Player(Dictionary<string, Animation> animations, int slide) {
         _texture = animations.First().Value.Texture;
         _animations = animations;
         _animationManager = new AnimationManager(_animations.First().Value);
-        
+        _scale=3;
+        _slide = slide;
     }
 
     public Player(Texture2D texture) {
         _texture = texture;
+        _scale=3;
     }
 
-    public override void Update(GameTime gameTime, List<Sprite> sprites, MapManager mapManager) {
+    public override void Update(GameTime gameTime, MapManager mapManager) {
         Move();
-        CheckCollision(sprites);
         CheckCollision(mapManager);
 
         SetAnimations();
